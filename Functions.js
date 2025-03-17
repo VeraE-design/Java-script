@@ -180,6 +180,22 @@ function removalla(word) {
         }
     }
     console.log(getBMICategory(calculateBMI(70, 1.75)));
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 
