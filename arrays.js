@@ -99,6 +99,13 @@ console.log(prices.sort((a, b) => a - b));
 // high to low
 console.log(prices.sort((a, b) => b - a));
 
+//reduce - reduces every element in an array to a single value
+//two parameters, callback function, startpoint
+const totalPrice = prices.reduce((acc, curr) => {
+  return acc + curr;
+}, 0);
+console.log(totalPrice);
+
 // concat-
 const africanCountries = ["Togo", "Mauritius", "Ghana"];
 const asianCountries = ["Singapore", "Japan", "South Korea"];
