@@ -1,61 +1,137 @@
-const cars = [
-  { name: "Lamborghini Huracan", rentPrice: 100, category: "sport" },
-  { name: "Range Rover Velar", rentPrice: 70, category: "suv" },
-  { name: "Audi R8", rentPrice: 120, category: "sport" },
-  { name: "Mustang", rentPrice: 80, category: "vintage" },
-  { name: "Porche 911", rentPrice: 120, category: "sport" },
-  { name: "Chevrolet Camaro 1970", rentPrice: 80, category: "vintage" },
-  { name: "Rolls Royce", rentPrice: 70, category: "sport" },
-  { name: "Tesla Model X", rentPrice: 120, category: "suv" },
-  { name: "BMW X5", rentPrice: 40, category: "suv" },
-  { name: "Volkswagen Beetle 1972", rentPrice: 30, category: "vintage" },
-];
-cars[1];
-cars[0].name;
+// // write a simple atm algo
+// // checkBalance
+// // withdrawalAmount
+// // depositAmount
+// // checkPin
 
-const vintageCars = cars.filter((car) => car.category === "vintage");
-console.log(vintageCars);
+// let balance = 5000;
+// let pin = 1234;
+// let attempts = 3;
 
-let totalrentPrice = cars.reduce((acc, car) => acc + car.rentPrice, 0);
+// function checkPin() {
+//     const enteredPin =parseInt( prompt("Enter Pin :"))
+//     while (attempts > 0) {
+//         if (enteredPin === pin) {
+//             attempts = 3;
+//             return "Login successful";
+//         } else {
+//             attempts--;
+//         return `Incorrect Pin, ${attempts} attempts left`;
+//         }
+//     }
+//     return "your card has been blocked";
+// };
 
-const carsMorethan100 = cars.every((c) => c.rentPrice > 100);
+// function startAtm (choice) {
+//     if (choice === 1) {
+//         withdrawalAmount()
+//     } else if (choice === 2) {
+//         depositAmount()
+//     }else if (choice === 3) {
+//         checkBalance()
+//     } else if (choice === 4) {
+//         return `Thank you for banking with us`
+//     }else {
+//         return "Invalid option, Try again";
+//     }
+// }
 
-let myName = "Kelvin";
-// == ===
+// function checkBalance () {
+//     return `Your current balance is $${balance}`; 
+// }
 
-let data = {
-  success: true,
-  message: "Product in Stock",
-  products: ["Glasses", "Lipssticks", "Shoes"],
-};
+//   function withdrawalAmount (amount) {
+//     if (amount < balance) {
+//         return `Withdrawal Succefull`
+//     }else {
+//         return `insufficient funds`
+//     };
+// }
 
-console.log(data.products[2]);
 
-const { products } = data;
-products[2];
+// function depositAmount (amount) {
+//     balance += amount;
+//     return "Deposit Successful"
+// }
+const pin = 1234;
+let attempts = 3;
+let balance = 5000;
 
-const meals = [
-  {
-    meal: {
-      name: "Sushi",
-      price: 45,
-      category: "Side",
-    },
-  },
-];
+function checkPin() {
+  while (attempts > 0) {
+    let enteredPin = parseInt(prompt("Enter your PIN:"));
 
-console.log(meals[0].meal.name);
+    if (enteredPin === pin) {
+      alert("PIN accepted. Welcome!");
+      atmMenu();
+      return;
+    } else {
+      attempts--;
+      alert(`Incorrect PIN. You have ${attempts} attempts left.`);
+    }
+  }
 
-const airline = {
-  types: [
-    {
-      name: {
-        brand: "Air Peace",
-        brand2: "Green Africa",
-        brand3: "Max Air",
-        brand4: "Emirates",
-      },
-    },
-  ],
-};
-console.log(airline.types[0].name.brand3);
+  alert("You have been locked out. Please contact the bank.");
+}
+
+function checkBalance() {
+  alert(`Your current balance is $${balance}`);
+}
+
+function withdraw() {
+  let amount = parseFloat(prompt("Enter amount to withdraw:"));
+
+  if (isNaN(amount) || amount <= 0) {
+    alert("Invalid amount.");
+  } else if (amount > balance) {
+    alert("Insufficient funds.");
+  } else {
+    balance -= amount;
+    alert (`Withdrawal successful. New balance: $${balance}`);
+  }
+}
+
+function deposit() {
+  let amount = parseFloat(prompt("Enter amount to deposit:"));
+
+  if (isNaN(amount) || amount <= 0) {
+    alert("Invalid amount.");
+  } else {
+    balance += amount;
+    alert (`Deposit successful. New balance: $${balance}`);
+  }
+}
+
+function atmMenu() {
+  while (true) {
+    let choice = prompt(
+      "Choose an option:\n1. Check Balance\n2. Withdraw Money\n3. Deposit Money\n4. Exit"
+    );
+
+    if (choice === "1") {
+      checkBalance();
+    } else if (choice === "2") {
+      withdraw();
+    } else if (choice === "3") {
+      deposit();
+    } else if (choice === "4") {
+      alert("Thank you for using the ATM.");
+      return;
+    } else {
+      alert("Invalid option. Try again.");
+    }
+  }
+}
+
+// Start the ATM program
+checkPin();
+
+
+
+
+
+
+
+
+
+
