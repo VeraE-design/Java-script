@@ -1,130 +1,104 @@
-// // write a simple atm algo
-// // checkBalance
-// // withdrawalAmount
-// // depositAmount
-// // checkPin
+// a// Documents object Model (dom)
+// select element on the document, tagName(h1, p), classname, idName,
+// combinations
 
-// let balance = 5000;
-// let pin = 1234;
-// let attempts = 3;
+// const headings = document.getElementsByTagName("h1")
+// console.log(headings);
 
-// function checkPin() {
-//     const enteredPin =parseInt( prompt("Enter Pin :"))
-//     while (attempts > 0) {
-//         if (enteredPin === pin) {
-//             attempts = 3;
-//             return "Login successful";
-//         } else {
-//             attempts--;
-//         return `Incorrect Pin, ${attempts} attempts left`;
-//         }
-//     }
-//     return "your card has been blocked";
-// };
+// const myH1s = document.getElementsByClassName("heading");
+// console.log(myH1s);
 
-// function startAtm (choice) {
-//     if (choice === 1) {
-//         withdrawalAmount()
-//     } else if (choice === 2) {
-//         depositAmount()
-//     }else if (choice === 3) {
-//         checkBalance()
-//     } else if (choice === 4) {
-//         return `Thank you for banking with us`
-//     }else {
-//         return "Invalid option, Try again";
-//     }
-// }
+// const textPara = document.getElementById("text");
+// console.log(textPara);
 
-// function checkBalance () {
-//     return `Your current balance is $${balance}`; 
-// }
+// // querySelector(css selector style) one
+// const firstPara = document.querySelector("p");
+// console.log(firstPara);
+// // querySelectorAll
+// const allParas = document.querySelectorAll("p");
+// console.log(allParas);
 
-//   function withdrawalAmount (amount) {
-//     if (amount < balance) {
-//         return `Withdrawal Succefull`
-//     }else {
-//         return `insufficient funds`
-//     };
-// }
+// interacting with the content on the web page
+// text content, innerText, innerHTML
 
+const heading = document.querySelector(".heading");
+console.log(heading.textContent);
+console.log(heading.innerText);
+heading.textContent += "JS IS FUN";
+// heading.innertext = "JS IS FUN";
 
-// function depositAmount (amount) {
-//     balance += amount;
-//     return "Deposit Successful"
-// }
-const pin = 1234;
-let attempts = 3;
-let balance = 5000;
+const container = document.querySelector("div");
+console.log(container.innerHTML);
+container.innerHTML += "<a href='https://google.com'>visit google</a>";
 
-function checkPin() {
-  while (attempts > 0) {
-    let enteredPin = parseInt(prompt("Enter your PIN:"));
+const myName = "Azeez Thiago"
+const fistName = "Azeez";
+const lastName = "Thiago";
+// const initial = "A.T"
+const intro = document.querySelector("h2");
+intro.textContent = `Welcome ${fistName.charAt(0)}.${lastName.charAt(0)}`;
 
-    if (enteredPin === pin) {
-      alert("PIN accepted. Welcome!");
-      atmMenu();
-      return;
-    } else {
-      attempts--;
-      alert(`Incorrect PIN. You have ${attempts} attempts left.`);
+const myLink = document.querySelector(".myLink");
+// 
+myLink.textContent = "facebook";
+myLink.setAttribute ("href", "http://facebook.com");
+myLink.setAttribute("target", "_blank");
+myLink.getAttribute("href");
+console.log(myLink. getAttribute("href"));
+
+// interact with styles 
+myLink.style.color = "red";
+myLink.style.textDecoration = "none"
+// 
+const btn = document.querySelector("button");
+// 
+// btn.className = "mybtn";
+// classlist
+btn.classList.add("mybtn");
+btn.classList.add("kelvin");
+// btn.classList.remove("kelvin");
+
+// create element in js
+const section = document.createElement("section");
+section.innerHTML = "<h1>Created from JS/h1</h1>";
+section.className = "mysection"
+
+// append it body or whereever it is needed
+const body = document.querySelector("body");
+body.appendChild(section);
+
+// responding to users interaction
+// 
+
+const testbtn = document.querySelector(".testbtn");
+testbtn.addEventListener("click", () => {
+    console.log("User clicked");  
+    body.style.backgroundColor = "red"; 
+    
+});
+// form handling
+// submit
+// click
+
+const form = document.querySelector('form');
+const fullname = document.querySelector(".fullname");
+const small = document.querySelector("form small");
+
+form.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const fullNameValue = fullname.value.trim();
+    console.log("form submitted", fullNameValue);
+    // validate the input
+    if (fullNameValue === "") {
+        small.style.display = "block";
+        small.textContent = "please provide a name";
     }
-  }
+ 
+});
 
-  alert("You have been locked out. Please contact the bank.");
-}
 
-function checkBalance() {
-  alert(`Your current balance is $${balance}`);
-}
 
-function withdraw() {
-  let amount = parseFloat(prompt("Enter amount to withdraw:"));
 
-  if (isNaN(amount) || amount <= 0) {
-    alert("Invalid amount.");
-  } else if (amount > balance) {
-    alert("Insufficient funds.");
-  } else {
-    balance -= amount;
-    alert (`Withdrawal successful. New balance: $${balance}`);
-  }
-}
-
-function deposit() {
-  let amount = parseFloat(prompt("Enter amount to deposit:"));
-
-  if (isNaN(amount) || amount <= 0) {
-    alert("Invalid amount.");
-  } else {
-    balance += amount;
-    alert (`Deposit successful. New balance: $${balance}`);
-  }
-}
-
-function atmMenu() {
-  while (true) {
-    let choice = prompt(
-      "Choose an option:\n1. Check Balance\n2. Withdraw Money\n3. Deposit Money\n4. Exit"
-    );
-
-    if (choice === "1") {
-      checkBalance();
-    } else if (choice === "2") {
-      withdraw();
-    } else if (choice === "3") {
-      deposit();
-    } else if (choice === "4") {
-      alert("Thank you for using the ATM.");
-      return;
-    } else {
-      alert("Invalid option. Try again.");
-    }
-  }
-}
-
-// Start the ATM program
-checkPin();
 
 
 
